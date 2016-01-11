@@ -1,7 +1,8 @@
+# -*- coding: utf-8 -*-
 __author__ = 'rafix'
 
 
-# -*- coding: utf-8 -*-
+
 
 # Form implementation generated from reading ui file 'interfejs_02.ui'
 #
@@ -27,7 +28,7 @@ try:
 except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
-import inspect
+
 
 class Ui_Planer():
     global lista_slownikow
@@ -130,6 +131,9 @@ class Ui_Planer():
         self.tableWidget.horizontalHeader().setStretchLastSection(True)
         self.tableWidget.setRowCount(0)
 
+
+
+
         self.label = QtGui.QLabel(Planer)
         self.label.setGeometry(QtCore.QRect(10, 10, 261, 21))
         self.label.setObjectName(_fromUtf8("label"))
@@ -224,6 +228,7 @@ class Ui_Planer():
         print "Done"
 
     def do_tabeli(self):
+        self.tableWidget.setSortingEnabled(False)
         row = 0
         self.tableWidget.setHorizontalHeaderLabels (['Godzina','Klasa','Nauczyciel',u'Dzień tygodnia'])
 
@@ -240,6 +245,10 @@ class Ui_Planer():
                 row = row + 1
         print row
         self.tableWidget.setRowCount(row)
+        self.tableWidget.setSortingEnabled(True)
+        self.tableWidget.sortByColumn(0, QtCore.Qt.AscendingOrder)
+        self.tableWidget.sortByColumn(3, QtCore.Qt.AscendingOrder)
+
 
     def retranslateUi(self, Planer):
         Planer.setWindowTitle(_translate("Planer", "Form", None))
