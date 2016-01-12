@@ -248,6 +248,7 @@ class Ui_Planer():
         self.tableWidget.setSortingEnabled(True)
         self.tableWidget.sortByColumn(0, QtCore.Qt.AscendingOrder)
         self.tableWidget.sortByColumn(3, QtCore.Qt.AscendingOrder)
+        #TODO improve sorting by day of week. Custom sorting mechanism by changing __lL__
 
 
     def retranslateUi(self, Planer):
