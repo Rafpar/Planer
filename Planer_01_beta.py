@@ -172,6 +172,7 @@ class Ui_Planer():
         self.pushButton.setGeometry(QtCore.QRect(490, 130, 61, 27))
         self.pushButton.setObjectName(_fromUtf8("pushButton"))
         self.pushButton.clicked.connect(self.do_slownika)
+        self.pushButton.clicked.connect(self.do_tabeli)
 
         self.pushButton_3 = QtGui.QPushButton(Planer)
         self.pushButton_3.setGeometry(QtCore.QRect(490, 321, 61, 27))
@@ -231,23 +232,25 @@ class Ui_Planer():
         self.tableWidget.setSortingEnabled(False)
         row = 0
         self.tableWidget.setHorizontalHeaderLabels (['Godzina','Klasa','Nauczyciel',u'Dzień tygodnia'])
+        try:
+            for x in lista_slownikow:
 
-        for x in lista_slownikow:
+                if x['sala'] == self.listWidget.currentItem().text():
 
-            if x['sala'] == self.listWidget.currentItem().text():
+                    self.tableWidget.insertRow(row)
+                    self.tableWidget.setItem(row, 0, QtGui.QTableWidgetItem(x['godzina']))
+                    self.tableWidget.setItem(row, 1, QtGui.QTableWidgetItem(x['klasa']))
+                    self.tableWidget.setItem(row, 2, QtGui.QTableWidgetItem(x['nauczyciel']))
+                    self.tableWidget.setItem(row, 3, QtGui.QTableWidgetItem(x['dzien']))
 
-                self.tableWidget.insertRow(row)
-                self.tableWidget.setItem(row, 0, QtGui.QTableWidgetItem(x['godzina']))
-                self.tableWidget.setItem(row, 1, QtGui.QTableWidgetItem(x['klasa']))
-                self.tableWidget.setItem(row, 2, QtGui.QTableWidgetItem(x['nauczyciel']))
-                self.tableWidget.setItem(row, 3, QtGui.QTableWidgetItem(x['dzien']))
-
-                row = row + 1
-        print row
-        self.tableWidget.setRowCount(row)
-        self.tableWidget.setSortingEnabled(True)
-        self.tableWidget.sortByColumn(0, QtCore.Qt.AscendingOrder)
-        self.tableWidget.sortByColumn(3, QtCore.Qt.AscendingOrder)
+                    row = row + 1
+            print row
+            self.tableWidget.setRowCount(row)
+            self.tableWidget.setSortingEnabled(True)
+            self.tableWidget.sortByColumn(0, QtCore.Qt.AscendingOrder)
+            self.tableWidget.sortByColumn(3, QtCore.Qt.AscendingOrder)
+        except:
+            pass
         #TODO improve sorting by day of week. Custom sorting mechanism by changing __lL__ method
 
 
