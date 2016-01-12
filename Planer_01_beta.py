@@ -329,19 +329,23 @@ class Ui_Planer():
     def usun(self):
 
         row = self.tableWidget.currentRow()
-        self.slownik_usun = {"godzina":self.tableWidget.item(row,0).text(),"klasa":self.tableWidget.item(row,1).text(),"sala":self.listWidget.currentItem().text(),"dzien":self.tableWidget.item(row,3).text(),"nauczyciel":self.tableWidget.item(row,2).text()}
+        try:
+            self.slownik_usun = {"godzina":self.tableWidget.item(row,0).text(),"klasa":self.tableWidget.item(row,1).text(),"sala":self.listWidget.currentItem().text(),"dzien":self.tableWidget.item(row,3).text(),"nauczyciel":self.tableWidget.item(row,2).text()}
 
-        for x in lista_slownikow:
-            if x == self.slownik_usun:
-                print "True"
-                lista_slownikow.remove(x)
-            else:
-                print "False"
+            for x in lista_slownikow:
+                if x == self.slownik_usun:
+                    print "True"
+                    lista_slownikow.remove(x)
+                else:
+                    print "False"
 
-        self.tableWidget.removeRow(row)
+            self.tableWidget.removeRow(row)
+        except:
+            pass
 
         print lista_slownikow
         print "Done"
+        #TODO create multiple removing of rows
 
 class archiwum():
 
