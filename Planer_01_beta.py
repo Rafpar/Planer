@@ -167,6 +167,14 @@ class Ui_Planer():
         self.label_11 = QtGui.QLabel(Planer)
         self.label_11.setGeometry(QtCore.QRect(600, 10, 31, 17))
         self.label_11.setObjectName(_fromUtf8("label_11"))
+        self.label_12 = QtGui.QLabel(Planer)
+        self.label_12.setGeometry(QtCore.QRect(220, 290, 221, 17))
+        font = QtGui.QFont()
+        font.setPointSize(15)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_12.setFont(font)
+        self.label_12.setObjectName(_fromUtf8("label_12"))
 
         self.pushButton = QtGui.QPushButton(Planer)
         self.pushButton.setGeometry(QtCore.QRect(490, 130, 61, 27))
@@ -187,6 +195,9 @@ class Ui_Planer():
         self.pushButton_5.setGeometry(QtCore.QRect(490, 380, 61, 27))
         self.pushButton_5.setObjectName(_fromUtf8("pushButton_5"))
         self.pushButton_5.clicked.connect(self.rgui)
+
+
+
 
         self.retranslateUi(Planer)
         QtCore.QMetaObject.connectSlotsByName(Planer)
@@ -224,7 +235,7 @@ class Ui_Planer():
             kontrol2.append(str(x))
         for x in QtCore.QVariant.toPyObject(settings.value('lista_slownikow')):
             lista_slownikow.append(x)
-
+        self.label_12.setText("")
         print lista_slownikow
         print "Done"
 
@@ -246,6 +257,8 @@ class Ui_Planer():
                     row = row + 1
             print row
             self.tableWidget.setRowCount(row)
+            self.label_12.setText(self.listWidget.currentItem().text())
+
             self.tableWidget.setSortingEnabled(True)
             self.tableWidget.sortByColumn(0, QtCore.Qt.AscendingOrder)
             self.tableWidget.sortByColumn(3, QtCore.Qt.AscendingOrder)
@@ -285,13 +298,30 @@ class Ui_Planer():
         for x in lista_slownikow:
             if x["godzina"] == self.slownik["godzina"] and x["sala"] == self.slownik["sala"] and x["dzien"] == self.slownik["dzien"]:
                 self.kontrol.append("1")
+            elif x["nauczyciel"] == self.slownik["nauczyciel"] and x["godzina"] == self.slownik["godzina"] and x["dzien"] == self.slownik["dzien"]:
+                self.kontrol.append("2")
+            elif x["klasa"] == self.slownik["klasa"] and x["godzina"] == self.slownik["godzina"] and x["dzien"] == self.slownik["dzien"]:
+                self.kontrol.append("3")
+        print self.kontrol
 
-        if "1" not in self.kontrol:
+
+        for x in self.kontrol:
+
+            if x == "1":
+                print "duplikat"
+                QtGui.QMessageBox.information(QtGui.QWidget(), u'UWAGA!!!', u"Sala w tym dniu w tej godzinie już zajęta !!!" , QtGui.QMessageBox.Ok)
+            elif x == "2":
+                print "duplikat"
+                QtGui.QMessageBox.information(QtGui.QWidget(), u'UWAGA!!!', u"Nauczyciel w tym dniu w tej godzinie już zajęty !!!" , QtGui.QMessageBox.Ok)
+            elif x == "3":
+                print "duplikat"
+                QtGui.QMessageBox.information(QtGui.QWidget(), u'UWAGA!!!', u"Klasa w tym dniu w tej godzinie już zajęta !!!" , QtGui.QMessageBox.Ok)
+
+        if len(self.kontrol) == 0:
+
             lista_slownikow.append(self.slownik)
             print " nie ma duplikatu"
-        else:
-            print "duplikat"
-            QtGui.QMessageBox.information(QtGui.QWidget(), u'UWAGA!!!', u"Sala w tym dniu w tej godzinie już zajęta !!!" , QtGui.QMessageBox.Ok)
+
 
         self.kontrol = []
         sortlistW = []
