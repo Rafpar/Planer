@@ -169,10 +169,12 @@ class Ui_Planer():
         self.label_11.setObjectName(_fromUtf8("label_11"))
         self.label_12 = QtGui.QLabel(Planer)
         self.label_12.setGeometry(QtCore.QRect(220, 290, 221, 17))
+
         font = QtGui.QFont()
         font.setPointSize(15)
         font.setBold(True)
         font.setWeight(75)
+
         self.label_12.setFont(font)
         self.label_12.setObjectName(_fromUtf8("label_12"))
 
