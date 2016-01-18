@@ -206,7 +206,7 @@ class Ui_Planer():
 
     def sgui(self):
         global save_directory
-        save_directory = QtGui.QFileDialog.getSaveFileName(Planer,'Save file','/home/rafix/Dokumenty/projekty_python/Planer/testy/untitled.txt','Text files (*.txt)')
+        save_directory = QtGui.QFileDialog.getSaveFileName(Planer,'Save file','C:/','Text files (*.txt)')
 
         for x in xrange(self.listWidget.count()):
             if str(self.listWidget.item(x).text()) not in kontrol2:
@@ -224,7 +224,7 @@ class Ui_Planer():
         global lista_slownikow
         lista_slownikow = []
         global open_directory
-        open_directory = QtGui.QFileDialog.getOpenFileName(Planer,'Open file','/home/rafix/Dokumenty/projekty_python/Planer/testy','Text files (*.txt)')
+        open_directory = QtGui.QFileDialog.getOpenFileName(Planer,'Open file','C:/','Text files (*.txt)')
         settings = QtCore.QSettings(open_directory, QtCore.QSettings.IniFormat)
 
         self.arch1.restoregui()
@@ -232,11 +232,18 @@ class Ui_Planer():
         self.arch3.restoregui()
         self.arch4.restoregui()
 
-        for x in QtCore.QVariant.toStringList(settings.value('kontrol2')):
-            ui.listWidget.addItem(x)
-            kontrol2.append(str(x))
-        for x in QtCore.QVariant.toPyObject(settings.value('lista_slownikow')):
-            lista_slownikow.append(x)
+        try:
+
+            for x in QtCore.QVariant.toStringList(settings.value('kontrol2')):
+                ui.listWidget.addItem(x)
+                kontrol2.append(str(x))
+        except:
+            pass
+        try:
+            for x in QtCore.QVariant.toPyObject(settings.value('lista_slownikow')):
+                lista_slownikow.append(x)
+        except:
+            pass
         self.label_12.setText("")
         print lista_slownikow
         print "Done"
