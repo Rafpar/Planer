@@ -41,7 +41,7 @@ class Ui_Planer():
         self.lista_1 = [] #QtCore.QStringList()
 
         Planer.setObjectName(_fromUtf8("Planer"))
-        Planer.resize(770, 547)
+        Planer.resize(770, 600)
         palette = QtGui.QPalette()
         brush = QtGui.QBrush(QtGui.QColor(0, 0, 255))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -130,9 +130,14 @@ class Ui_Planer():
         self.listWidget3.setGeometry(QtCore.QRect(640, 30, 71, 271))
         self.listWidget3.setObjectName(_fromUtf8("listWidget3"))
 
+        self.lW1 = ToListsWidgets(self.comboBox_3,self.listWidget)
+        self.lW2 = ToListsWidgets(self.comboBox_4,self.listWidget2)
+        self.lW3 = ToListsWidgets(self.comboBox_2,self.listWidget3)
+
+
 
         self.tableWidget = QtGui.QTableWidget(Planer)
-        self.tableWidget.setGeometry(QtCore.QRect(10, 321, 451, 211))
+        self.tableWidget.setGeometry(QtCore.QRect(10, 375, 451, 211))
         self.tableWidget.setObjectName(_fromUtf8("tableWidget"))
         self.tableWidget.setColumnCount(4)
         self.tableWidget.setHorizontalHeaderLabels (['Godzina','Klasa','Nauczyciel',u'Dzień tygodnia'])
@@ -170,7 +175,7 @@ class Ui_Planer():
         self.label_9.setGeometry(QtCore.QRect(220, 250, 161, 17))
         self.label_9.setObjectName(_fromUtf8("label_9"))
         self.label_10 = QtGui.QLabel(Planer)
-        self.label_10.setGeometry(QtCore.QRect(10, 290, 221, 17))
+        self.label_10.setGeometry(QtCore.QRect(10, 340, 221, 17))
         self.label_10.setObjectName(_fromUtf8("label_10"))
         self.label_11 = QtGui.QLabel(Planer)
         self.label_11.setGeometry(QtCore.QRect(460, 10, 31, 17))
@@ -178,10 +183,13 @@ class Ui_Planer():
         self.label_13 = QtGui.QLabel(Planer)
         self.label_13.setGeometry(QtCore.QRect(550, 10, 80, 17))
         self.label_13.setObjectName(_fromUtf8("label_13"))
+        self.label_14 = QtGui.QLabel(Planer)
+        self.label_14.setGeometry(QtCore.QRect(640, 10, 40, 17))
+        self.label_14.setObjectName(_fromUtf8("label_13"))
 
 
         self.label_12 = QtGui.QLabel(Planer)
-        self.label_12.setGeometry(QtCore.QRect(220, 290, 221, 17))
+        self.label_12.setGeometry(QtCore.QRect(220, 340, 221, 17))
 
         font = QtGui.QFont()
         font.setPointSize(15)
@@ -202,16 +210,16 @@ class Ui_Planer():
         self.pushButton.clicked.connect(self.do_tabeli)
 
         self.pushButton_3 = QtGui.QPushButton(Planer)
-        self.pushButton_3.setGeometry(QtCore.QRect(490, 321, 61, 27))
+        self.pushButton_3.setGeometry(QtCore.QRect(490, 375, 61, 27))
         self.pushButton_3.setObjectName(_fromUtf8("pushButton_3"))
         self.pushButton_3.clicked.connect(self.usun)
 
         self.pushButton_4 = QtGui.QPushButton(Planer)
-        self.pushButton_4.setGeometry(QtCore.QRect(490, 350, 61, 27))
+        self.pushButton_4.setGeometry(QtCore.QRect(490, 405, 61, 27))
         self.pushButton_4.setObjectName(_fromUtf8("pushButton_4"))
         self.pushButton_4.clicked.connect(self.sgui)
         self.pushButton_5 = QtGui.QPushButton(Planer)
-        self.pushButton_5.setGeometry(QtCore.QRect(490, 380, 61, 27))
+        self.pushButton_5.setGeometry(QtCore.QRect(490, 435, 61, 27))
         self.pushButton_5.setObjectName(_fromUtf8("pushButton_5"))
         self.pushButton_5.clicked.connect(self.rgui)
 
@@ -241,7 +249,7 @@ class Ui_Planer():
         global lista_slownikow
         lista_slownikow = []
         global open_directory
-        open_directory = QtGui.QFileDialog.getOpenFileName(Planer,'Open file','C:/','Text files (*.txt)')
+        open_directory = QtGui.QFileDialog.getOpenFileName(Planer,'Open file','/home/rafix/Dokumenty/projekty_python/Planer/testy','Text files (*.txt)')
         settings = QtCore.QSettings(open_directory, QtCore.QSettings.IniFormat)
 
         self.arch1.restoregui()
@@ -299,7 +307,7 @@ class Ui_Planer():
         self.toolButton_2.setText(_translate("Planer", ">>", None))
         self.toolButton_3.setText(_translate("Planer", ">>", None))
         self.pushButton.setText(_translate("Planer", ">>>", None))
-        self.label.setText(_translate("Planer", "Wprowadź godzinę rozpoczęcia lekcji:", None))
+        self.label.setText(_translate("Planer", "Wprowadź godzinę:", None))
         self.label_2.setText(_translate("Planer", "Wprowadź klasę:", None))
         self.label_3.setText(_translate("Planer", "Wprowadź numer sali:", None))
         self.label_4.setText(_translate("Planer", "Wybierz godzinę", None))
@@ -312,7 +320,8 @@ class Ui_Planer():
 
         self.label_10.setText(_translate("Planer", "Tabela rezerwacji sali lekcyjnej", None))
         self.label_11.setText(_translate("Planer", "Sala", None))
-        self.label_13.setText(_translate("Planer", "Nauczuciel", None))
+        self.label_13.setText(_translate("Planer", "Nauczyciel", None))
+        self.label_14.setText(_translate("Planer", "Klasa", None))
 
 
 
@@ -354,34 +363,37 @@ class Ui_Planer():
 
 
         self.kontrol = []
-        sortlistW = []
-        sortlistW2 = []
+        self.lW1.tolists()
+        self.lW2.tolists()
+        self.lW3.tolists()
+        #sortlistW = []
+        #sortlistW2 = []
 
-        if self.comboBox_3.currentText() not in kontrol2:
-            for x in xrange(self.listWidget.count()):
-                sortlistW.append(str(self.listWidget.item(x).text()))
-            try:
-                for x in sortlistW:
-                    try:
-                        sortlistW2.append(int(x))
-                    except:
-                        sortlistW2.append(str(x))
-            finally:
-                try:
-                    sortlistW2.append(int(self.comboBox_3.currentText()))
-                except:
-
-                    sortlistW2.append(str(self.comboBox_3.currentText()))
-                finally:
-                    tostr = []
-                    sortlistW2.sort()
-                    for x in sortlistW2:
-                        tostr.append(str(x))
-                    self.listWidget.clear()
-                    self.listWidget.addItems(tostr)
-                    kontrol2.append(str(self.comboBox_3.currentText()))
-
-        print kontrol2
+        # if self.comboBox_3.currentText() not in kontrol2:
+        #     for x in xrange(self.listWidget.count()):
+        #         sortlistW.append(str(self.listWidget.item(x).text()))
+        #     try:
+        #         for x in sortlistW:
+        #             try:
+        #                 sortlistW2.append(int(x))
+        #             except:
+        #                 sortlistW2.append(str(x))
+        #     finally:
+        #         try:
+        #             sortlistW2.append(int(self.comboBox_3.currentText()))
+        #         except:
+        #
+        #             sortlistW2.append(str(self.comboBox_3.currentText()))
+        #         finally:
+        #             tostr = []
+        #             sortlistW2.sort()
+        #             for x in sortlistW2:
+        #                 tostr.append(str(x))
+        #             self.listWidget.clear()
+        #             self.listWidget.addItems(tostr)
+        #             kontrol2.append(str(self.comboBox_3.currentText()))
+        #
+        # print kontrol2
 
         for x in lista_slownikow:
             print x
@@ -474,6 +486,43 @@ class dodawanie():
                     self.cB.addItems(tostr)
                     self.lista.append(self.lE.text())
             print cBsortlist2
+
+class ToListsWidgets():
+
+    def __init__(self,cB,lW):
+
+        self.cB = cB
+        self.lW = lW
+
+    def tolists(self):
+        sortlistW = []
+        sortlistW2 = []
+        if self.cB.currentText() not in kontrol2:
+                for x in xrange(self.lW.count()):
+                    sortlistW.append(str(self.lW.item(x).text()))
+                try:
+                    for x in sortlistW:
+                        try:
+                            sortlistW2.append(int(x))
+                        except:
+                            sortlistW2.append(str(x))
+                finally:
+                    try:
+                        sortlistW2.append(int(self.cB.currentText()))
+                    except:
+
+                        sortlistW2.append(str(self.cB.currentText()))
+                    finally:
+                        tostr = []
+                        sortlistW2.sort()
+                        for x in sortlistW2:
+                            tostr.append(str(x))
+                        self.lW.clear()
+                        self.lW.addItems(tostr)
+                        kontrol2.append(str(self.cB.currentText()))
+
+        print kontrol2
+
 
 if __name__ == "__main__":
     import sys
