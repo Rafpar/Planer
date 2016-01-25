@@ -68,19 +68,19 @@ class Ui_Planer():
         self.lineEdit_4.setObjectName(_fromUtf8("lineEdit_4"))
 
         self.comboBox = QtGui.QComboBox(Planer)
-        self.comboBox.setGeometry(QtCore.QRect(350, 30, 111, 27))
+        self.comboBox.setGeometry(QtCore.QRect(220, 30, 111, 27))
         self.comboBox.setObjectName(_fromUtf8("comboBox"))
         self.comboBox_2 = QtGui.QComboBox(Planer)
-        self.comboBox_2.setGeometry(QtCore.QRect(350, 90, 111, 27))
+        self.comboBox_2.setGeometry(QtCore.QRect(220, 90, 111, 27))
         self.comboBox_2.setObjectName(_fromUtf8("comboBox_2"))
         self.comboBox_3 = QtGui.QComboBox(Planer)
-        self.comboBox_3.setGeometry(QtCore.QRect(350, 150, 111, 27))
+        self.comboBox_3.setGeometry(QtCore.QRect(220, 150, 111, 27))
         self.comboBox_3.setObjectName(_fromUtf8("comboBox_3"))
         self.comboBox_4 = QtGui.QComboBox(Planer)
-        self.comboBox_4.setGeometry(QtCore.QRect(350, 210, 111, 27))
+        self.comboBox_4.setGeometry(QtCore.QRect(220, 210, 111, 27))
         self.comboBox_4.setObjectName(_fromUtf8("comboBox_4"))
         self.comboBox_5 = QtGui.QComboBox(Planer)
-        self.comboBox_5.setGeometry(QtCore.QRect(350, 270, 111, 27))
+        self.comboBox_5.setGeometry(QtCore.QRect(220, 270, 111, 27))
         self.comboBox_5.setObjectName(_fromUtf8("comboBox_5"))
 
         self.arch1 = archiwum(self.comboBox,"godzina")
@@ -98,29 +98,37 @@ class Ui_Planer():
         cb4 = dodawanie(self.lineEdit_4,self.lista_1,self.comboBox_4)
 
         self.toolButton = QtGui.QToolButton(Planer)
-        self.toolButton.setGeometry(QtCore.QRect(270, 30, 31, 25))
+        self.toolButton.setGeometry(QtCore.QRect(160, 30, 31, 25))
         self.toolButton.setObjectName(_fromUtf8("toolButton"))
         self.toolButton.clicked.connect(lambda: cb1.dodanie())
 
         self.toolButton_2 = QtGui.QToolButton(Planer)
-        self.toolButton_2.setGeometry(QtCore.QRect(270, 90, 31, 25))
+        self.toolButton_2.setGeometry(QtCore.QRect(160, 90, 31, 25))
         self.toolButton_2.setObjectName(_fromUtf8("toolButton_2"))
         self.toolButton_2.clicked.connect(lambda: cb2.dodanie())
 
         self.toolButton_3 = QtGui.QToolButton(Planer)
-        self.toolButton_3.setGeometry(QtCore.QRect(270, 150, 31, 25))
+        self.toolButton_3.setGeometry(QtCore.QRect(160, 150, 31, 25))
         self.toolButton_3.setObjectName(_fromUtf8("toolButton_3"))
         self.toolButton_3.clicked.connect(lambda: cb3.dodanie())
 
         self.toolButton_4 = QtGui.QToolButton(Planer)
-        self.toolButton_4.setGeometry(QtCore.QRect(270, 210, 31, 25))
+        self.toolButton_4.setGeometry(QtCore.QRect(160, 210, 31, 25))
         self.toolButton_4.setObjectName(_fromUtf8("toolButton_4"))
         self.toolButton_4.clicked.connect(lambda: cb4.dodanie())
 
         self.listWidget = QtGui.QListWidget(Planer)
-        self.listWidget.setGeometry(QtCore.QRect(580, 30, 71, 271))
+        self.listWidget.setGeometry(QtCore.QRect(460, 30, 71, 271))
         self.listWidget.setObjectName(_fromUtf8("listWidget"))
         self.listWidget.itemClicked.connect(self.do_tabeli)
+
+        self.listWidget2 = QtGui.QListWidget(Planer)
+        self.listWidget2.setGeometry(QtCore.QRect(550, 30, 71, 271))
+        self.listWidget2.setObjectName(_fromUtf8("listWidget2"))
+
+        self.listWidget3 = QtGui.QListWidget(Planer)
+        self.listWidget3.setGeometry(QtCore.QRect(640, 30, 71, 271))
+        self.listWidget3.setObjectName(_fromUtf8("listWidget3"))
 
 
         self.tableWidget = QtGui.QTableWidget(Planer)
@@ -144,29 +152,31 @@ class Ui_Planer():
         self.label_3.setGeometry(QtCore.QRect(10, 130, 161, 17))
         self.label_3.setObjectName(_fromUtf8("label_3"))
         self.label_4 = QtGui.QLabel(Planer)
-        self.label_4.setGeometry(QtCore.QRect(350, 10, 121, 17))
+        self.label_4.setGeometry(QtCore.QRect(220, 10, 121, 17))
         self.label_4.setObjectName(_fromUtf8("label_4"))
         self.label_5 = QtGui.QLabel(Planer)
-        self.label_5.setGeometry(QtCore.QRect(350, 70, 101, 17))
+        self.label_5.setGeometry(QtCore.QRect(220, 70, 101, 17))
         self.label_5.setObjectName(_fromUtf8("label_5"))
         self.label_6 = QtGui.QLabel(Planer)
-        self.label_6.setGeometry(QtCore.QRect(350, 130, 91, 17))
+        self.label_6.setGeometry(QtCore.QRect(220, 130, 91, 17))
         self.label_6.setObjectName(_fromUtf8("label_6"))
         self.label_7 = QtGui.QLabel(Planer)
-        self.label_7.setGeometry(QtCore.QRect(350, 190, 141, 17))
+        self.label_7.setGeometry(QtCore.QRect(220, 190, 141, 17))
         self.label_7.setObjectName(_fromUtf8("label_7"))
         self.label_8 = QtGui.QLabel(Planer)
         self.label_8.setGeometry(QtCore.QRect(10, 190, 161, 17))
         self.label_8.setObjectName(_fromUtf8("label_8"))
         self.label_9 = QtGui.QLabel(Planer)
-        self.label_9.setGeometry(QtCore.QRect(350, 250, 161, 17))
+        self.label_9.setGeometry(QtCore.QRect(220, 250, 161, 17))
         self.label_9.setObjectName(_fromUtf8("label_9"))
         self.label_10 = QtGui.QLabel(Planer)
         self.label_10.setGeometry(QtCore.QRect(10, 290, 221, 17))
         self.label_10.setObjectName(_fromUtf8("label_10"))
         self.label_11 = QtGui.QLabel(Planer)
-        self.label_11.setGeometry(QtCore.QRect(600, 10, 31, 17))
+        self.label_11.setGeometry(QtCore.QRect(460, 10, 31, 17))
         self.label_11.setObjectName(_fromUtf8("label_11"))
+
+
         self.label_12 = QtGui.QLabel(Planer)
         self.label_12.setGeometry(QtCore.QRect(220, 290, 221, 17))
 
@@ -178,8 +188,11 @@ class Ui_Planer():
         self.label_12.setFont(font)
         self.label_12.setObjectName(_fromUtf8("label_12"))
 
+
+
+
         self.pushButton = QtGui.QPushButton(Planer)
-        self.pushButton.setGeometry(QtCore.QRect(490, 130, 61, 27))
+        self.pushButton.setGeometry(QtCore.QRect(380, 130, 61, 27))
         self.pushButton.setObjectName(_fromUtf8("pushButton"))
         self.pushButton.clicked.connect(self.do_slownika)
         self.pushButton.clicked.connect(self.do_tabeli)
@@ -295,6 +308,9 @@ class Ui_Planer():
 
         self.label_10.setText(_translate("Planer", "Tabela rezerwacji sali lekcyjnej", None))
         self.label_11.setText(_translate("Planer", "Sala", None))
+
+
+
         self.pushButton_3.setText(_translate("Planer", "Usuń", None))
         self.pushButton_4.setText(_translate("Planer", "Zapisz", None))
         self.pushButton_5.setText(_translate("Planer", "Otwórz", None))
