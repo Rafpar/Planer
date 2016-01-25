@@ -175,6 +175,9 @@ class Ui_Planer():
         self.label_11 = QtGui.QLabel(Planer)
         self.label_11.setGeometry(QtCore.QRect(460, 10, 31, 17))
         self.label_11.setObjectName(_fromUtf8("label_11"))
+        self.label_13 = QtGui.QLabel(Planer)
+        self.label_13.setGeometry(QtCore.QRect(550, 10, 80, 17))
+        self.label_13.setObjectName(_fromUtf8("label_13"))
 
 
         self.label_12 = QtGui.QLabel(Planer)
@@ -187,6 +190,7 @@ class Ui_Planer():
 
         self.label_12.setFont(font)
         self.label_12.setObjectName(_fromUtf8("label_12"))
+
 
 
 
@@ -308,6 +312,7 @@ class Ui_Planer():
 
         self.label_10.setText(_translate("Planer", "Tabela rezerwacji sali lekcyjnej", None))
         self.label_11.setText(_translate("Planer", "Sala", None))
+        self.label_13.setText(_translate("Planer", "Nauczuciel", None))
 
 
 
