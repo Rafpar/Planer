@@ -88,6 +88,8 @@ class Ui_Planer():
         self.arch3 = archiwum(self.comboBox_3,"sala")
         self.arch4 = archiwum(self.comboBox_4,"nauczyciel")
 
+
+
         self.dni_tygodnia = QtCore.QStringList([u'Poniedziałek','Wtorek',u'Środa','Czwartek',u'Piątek','Sobota','Niedziela'])
 
         self.comboBox_5.addItems(self.dni_tygodnia)
@@ -125,10 +127,12 @@ class Ui_Planer():
         self.listWidget2 = QtGui.QListWidget(Planer)
         self.listWidget2.setGeometry(QtCore.QRect(550, 30, 71, 271))
         self.listWidget2.setObjectName(_fromUtf8("listWidget2"))
+        self.listWidget2.itemClicked.connect(self.do_tabeli2)
 
         self.listWidget3 = QtGui.QListWidget(Planer)
         self.listWidget3.setGeometry(QtCore.QRect(640, 30, 71, 271))
         self.listWidget3.setObjectName(_fromUtf8("listWidget3"))
+        self.listWidget3.itemClicked.connect(self.do_tabeli3)
 
         self.lW1 = ToListsWidgets(self.comboBox_3,self.listWidget)
         self.lW2 = ToListsWidgets(self.comboBox_4,self.listWidget2)
@@ -140,8 +144,11 @@ class Ui_Planer():
         self.tableWidget.setGeometry(QtCore.QRect(10, 375, 451, 211))
         self.tableWidget.setObjectName(_fromUtf8("tableWidget"))
         self.tableWidget.setColumnCount(4)
-        self.tableWidget.setHorizontalHeaderLabels (['Godzina','Klasa','Nauczyciel',u'Dzień tygodnia'])
+        self.tableWidget.setHorizontalHeaderLabels ([u'Dzień tygodnia','Godzina','Klasa','Nauczyciel'])
         self.tableWidget.horizontalHeader().setStretchLastSection(True)
+        self.tableWidget.resizeColumnsToContents()
+        self.tableWidget.setColumnWidth(1,100)
+        self.tableWidget.setColumnWidth(2,100)
         self.tableWidget.setRowCount(0)
 
 
@@ -208,6 +215,8 @@ class Ui_Planer():
         self.pushButton.setObjectName(_fromUtf8("pushButton"))
         self.pushButton.clicked.connect(self.do_slownika)
         self.pushButton.clicked.connect(self.do_tabeli)
+        self.pushButton.clicked.connect(self.do_tabeli2)
+        self.pushButton.clicked.connect(self.do_tabeli3)
 
         self.pushButton_3 = QtGui.QPushButton(Planer)
         self.pushButton_3.setGeometry(QtCore.QRect(490, 375, 61, 27))
@@ -231,7 +240,7 @@ class Ui_Planer():
 
     def sgui(self):
         global save_directory
-        save_directory = QtGui.QFileDialog.getSaveFileName(Planer,'Save file','C:/','Text files (*.txt)')
+        save_directory = QtGui.QFileDialog.getSaveFileName(Planer,'Save file','/home/rafix/Dokumenty/projekty_python/Planer/testy','Text files (*.txt)')
 
         for x in xrange(self.listWidget.count()):
             if str(self.listWidget.item(x).text()) not in kontrol2:
@@ -276,17 +285,18 @@ class Ui_Planer():
     def do_tabeli(self):
         self.tableWidget.setSortingEnabled(False)
         row = 0
-        self.tableWidget.setHorizontalHeaderLabels (['Godzina','Klasa','Nauczyciel',u'Dzień tygodnia'])
+        self.tableWidget.setHorizontalHeaderLabels ([u'Dzień tygodnia','Godzina','Klasa','Nauczyciel'])
         try:
             for x in lista_slownikow:
 
                 if x['sala'] == self.listWidget.currentItem().text():
 
                     self.tableWidget.insertRow(row)
-                    self.tableWidget.setItem(row, 0, QtGui.QTableWidgetItem(x['godzina']))
-                    self.tableWidget.setItem(row, 1, QtGui.QTableWidgetItem(x['klasa']))
-                    self.tableWidget.setItem(row, 2, QtGui.QTableWidgetItem(x['nauczyciel']))
-                    self.tableWidget.setItem(row, 3, QtGui.QTableWidgetItem(x['dzien']))
+                    self.tableWidget.setItem(row, 0, QtGui.QTableWidgetItem(x['dzien']))
+                    self.tableWidget.setItem(row, 1, QtGui.QTableWidgetItem(x['godzina']))
+                    self.tableWidget.setItem(row, 2, QtGui.QTableWidgetItem(x['klasa']))
+                    self.tableWidget.setItem(row, 3, QtGui.QTableWidgetItem(x['nauczyciel']))
+
 
                     row = row + 1
             print row
@@ -299,6 +309,62 @@ class Ui_Planer():
         except:
             pass
         #TODO improve sorting by day of week. Custom sorting mechanism by changing __lL__ method
+
+    def do_tabeli2(self):
+        self.tableWidget.setSortingEnabled(False)
+        row = 0
+        self.tableWidget.setHorizontalHeaderLabels ([u'Dzień tygodnia','Godzina','Klasa','Sala'])
+        try:
+            for x in lista_slownikow:
+
+                if x['nauczyciel'] == self.listWidget2.currentItem().text():
+
+                    self.tableWidget.insertRow(row)
+                    self.tableWidget.setItem(row, 0, QtGui.QTableWidgetItem(x['dzien']))
+                    self.tableWidget.setItem(row, 1, QtGui.QTableWidgetItem(x['godzina']))
+                    self.tableWidget.setItem(row, 2, QtGui.QTableWidgetItem(x['klasa']))
+                    self.tableWidget.setItem(row, 3, QtGui.QTableWidgetItem(x['sala']))
+
+
+                    row = row + 1
+            print row
+            self.tableWidget.setRowCount(row)
+            self.label_12.setText(self.listWidget2.currentItem().text())
+
+            self.tableWidget.setSortingEnabled(True)
+            self.tableWidget.sortByColumn(0, QtCore.Qt.AscendingOrder)
+            self.tableWidget.sortByColumn(1, QtCore.Qt.AscendingOrder)
+        except:
+            pass
+
+    def do_tabeli3(self):
+        self.tableWidget.setSortingEnabled(False)
+        row = 0
+        self.tableWidget.setHorizontalHeaderLabels ([u'Dzień tygodnia','Godzina','Nauczyciel','Sala'])
+        try:
+            for x in lista_slownikow:
+
+                if x['klasa'] == self.listWidget3.currentItem().text():
+
+                    self.tableWidget.insertRow(row)
+                    self.tableWidget.setItem(row, 0, QtGui.QTableWidgetItem(x['dzien']))
+                    self.tableWidget.setItem(row, 1, QtGui.QTableWidgetItem(x['godzina']))
+                    self.tableWidget.setItem(row, 2, QtGui.QTableWidgetItem(x['nauczyciel']))
+                    self.tableWidget.setItem(row, 3, QtGui.QTableWidgetItem(x['sala']))
+
+
+                    row = row + 1
+            print row
+            self.tableWidget.setRowCount(row)
+            self.label_12.setText(self.listWidget3.currentItem().text())
+
+            self.tableWidget.setSortingEnabled(True)
+            self.tableWidget.sortByColumn(0, QtCore.Qt.AscendingOrder)
+            self.tableWidget.sortByColumn(1, QtCore.Qt.AscendingOrder)
+        except:
+            pass
+
+
 
 
     def retranslateUi(self, Planer):
@@ -402,7 +468,7 @@ class Ui_Planer():
 
         row = self.tableWidget.currentRow()
         try:
-            self.slownik_usun = {"godzina":self.tableWidget.item(row,0).text(),"klasa":self.tableWidget.item(row,1).text(),"sala":self.listWidget.currentItem().text(),"dzien":self.tableWidget.item(row,3).text(),"nauczyciel":self.tableWidget.item(row,2).text()}
+            self.slownik_usun = {"godzina":self.tableWidget.item(row,1).text(),"klasa":self.tableWidget.item(row,2).text(),"sala":self.listWidget.currentItem().text(),"dzien":self.tableWidget.item(row,0).text(),"nauczyciel":self.tableWidget.item(row,3).text()}
 
             for x in lista_slownikow:
                 if x == self.slownik_usun:
@@ -446,7 +512,7 @@ class archiwum():
         self.cB.clear()
         ui.listWidget.clear()
         ui.tableWidget.clear()
-        ui.tableWidget.setHorizontalHeaderLabels (['Godzina','Klasa','Nauczyciel',u'Dzień tygodnia'])
+        ui.tableWidget.setHorizontalHeaderLabels ([u'Dzień tygodnia','Godzina','Klasa','Nauczyciel'])
         ui.tableWidget.setRowCount(0)
         settings = QtCore.QSettings(open_directory, QtCore.QSettings.IniFormat)
         self.cB.insertItems(0,QtCore.QVariant.toStringList(settings.value(self.typ)))
